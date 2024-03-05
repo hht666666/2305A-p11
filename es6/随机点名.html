@@ -19,32 +19,32 @@
         }
 
         .item {
-            width: 20%;
+            width: 16.666667%;
             text-align: center;
             line-height: 70px;
-            background-image: radial-gradient(#8ecd3e, red);
+            background-image: radial-gradient(red, greenyellow);
             font-size: 20px;
             -webkit-background-clip: text;
-            color: transparent;
-            animation: ani 3s infinite ease-in-out;
-            background-position: 200px 200px;
             background-clip: 0;
+            color: transparent;
+            animation: aaa 3s infinite ease-in-out;
+            background-position: 200px 200px;
         }
 
-        @keyframes ani {
+        @keyframes aaa {
             0% {
-                background-position: 250px 200px;
+                background-position: 200px 200px;
             }
 
             100% {
-                background-position: 450px 400px;
-
+                background-position: 400px 400px;
             }
         }
 
+
         h1 {
             text-align: center;
-            margin-bottom: 300px;
+            margin-bottom: 150px;
             color: #fff;
         }
 
@@ -74,29 +74,20 @@
         }
 
         span {
-            background-image: radial-gradient(#8ecd3e, red);
+            background-image: radial-gradient(red, greenyellow);
             font-size: 20px;
             -webkit-background-clip: text;
+            background-clip: 0;
             color: transparent;
             animation: aaa 3s infinite ease-in-out;
             background-position: 200px 200px;
-            background-clip: 0;
         }
 
-        @keyframes aaa {
-            0% {
-                background-position: 250px 200px;
-            }
 
-            100% {
-                background-position: 450px 400px;
-
-            }
-        }
 
         .items {
             color: #fff;
-            width: 20%;
+            width: 16.666667%;
             text-align: center;
             line-height: 70px;
             font-size: 20px;
@@ -117,7 +108,7 @@
             </p>
             <p class="tx">天选之人: &emsp; <span></span> </p>
             <button onclick="people()">单人点名</button>
-            <button onclick="peoples()">双人点名</button>
+            <button onclick="peoples()" class="peoples">双人点名</button>
             <button onclick="man()">男生点名</button>
             <button onclick="woman()">女生点名</button>
         </div>
@@ -129,26 +120,37 @@
 
 <script>
     var arr = [
-        { name: '孟鹤堂', sex: '男' },
-        { name: '周九良', sex: '男' },
-        { name: '刘亦菲', sex: '女' },
-        { name: '岳云鹏', sex: '男' },
-        { name: '孙越', sex: '男' },
-        { name: '高峰', sex: '男' },
-        { name: '栾云平', sex: '男' },
-        { name: '周慧敏', sex: '女' },
-        { name: '烧饼', sex: '男' },
-        { name: '郭麒麟', sex: '男' },
-        { name: '王祖贤', sex: '女' },
-        { name: '秦霄贤', sex: '男' },
-        { name: '尚筱菊', sex: '男' },
-        { name: '郎鹤炎', sex: '男' },
-        { name: '张鹤伦', sex: '男' },
-        { name: '关之琳', sex: '女' },
-        { name: '郭德纲', sex: '男' },
-        { name: '于谦', sex: '男' },
-        { name: '侯镇', sex: '男' },
-        { name: '刘诗诗', sex: '女' },
+        { name: '韩昊天', sex: '男' },
+        { name: '姚新奇', sex: '男' },
+        { name: '杨明迪', sex: '女' },
+        { name: '黄文龙', sex: '男' },
+        { name: '黄金祥', sex: '男' },
+        { name: '孙晨', sex: '男' },
+        { name: '杨文航', sex: '男' },
+        { name: '孙小云', sex: '女' },
+        { name: '胡明言', sex: '男' },
+        { name: '贾亚锐', sex: '男' },
+        { name: '李金阳', sex: '女' },
+        { name: '胡星宇', sex: '男' },
+        { name: '马浩阳', sex: '男' },
+        { name: '刘东宇', sex: '男' },
+        { name: '肖复兴', sex: '男' },
+        { name: '侯婉如', sex: '女' },
+        { name: '邓恒智', sex: '男' },
+        { name: '刘豪然', sex: '男' },
+        { name: '白颖帆', sex: '男' },
+        { name: '李洋', sex: '男' },
+        { name: '俎召铃', sex: '男' },
+        { name: '米子奇', sex: '男' },
+        { name: '卢孟磊', sex: '男' },
+        { name: '孙泽森', sex: '男' },
+        { name: '徐政田', sex: '男' },
+        { name: '胡雅茜', sex: '女' },
+        { name: '李周硕', sex: '男' },
+        { name: '王子默', sex: '男' },
+        { name: '石海斌', sex: '男' },
+        { name: '刘乐', sex: '女' },
+        { name: '王振霆', sex: '男' },
     ]
 
     //渲染天选之人数据
@@ -189,6 +191,7 @@
     //双人点名
     var empty = ''
     function peoples() {
+        document.querySelector('.peoples').innerHTML = '停止'
         if (empty == '') {
             empty = '1'
             timer = setInterval(() => {
@@ -206,6 +209,7 @@
         } else {
             clearInterval(timer)
             empty = ''
+            document.querySelector('.peoples').innerHTML = '双人点名'
         }
     }
 
