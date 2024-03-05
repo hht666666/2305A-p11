@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    function name(a, b = 10, c) {
+        return a + b + c
+    }
+    console.log(name(1, 2));
+
+
+
+//跟解构赋值结合
+function connect({a,b,c,d}) {
+    console.log(a,b,c,d);
+}
+
+connect({
+    a:10,
+    b:20,
+    c:30,
+    d:40
+})
+</script>

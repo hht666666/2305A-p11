@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+
+    // //生成器函数代码编写
+    // function* name() {
+    //     yield 1
+    //     yield 2
+    //     yield 3
+    // }
+
+    // //yield 关键字后面加的是返回的值  类似 return
+
+    // let iterator = name()
+    // console.log(iterator);
+    // console.log(iterator.next())
+    // console.log(iterator.next())
+    // console.log(iterator.next())
+    // console.log(iterator.next())
+
+
+    //生成器函数参数
+    function* name(arg) {
+        let one=yield arg
+        let two=yield 111
+        let three=yield 222
+    }
+
+    let iterator1 = name('AAAA')
+    console.log(iterator1.next())
+
+
+    console.log(iterator1.next('BBB'))
+    console.log(iterator1.next('CCC'))
+    console.log(iterator1.next('DDD'))
+</script>

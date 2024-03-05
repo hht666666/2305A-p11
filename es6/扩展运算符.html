@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    //传参的时候将数组转化为一个序列参数
+    const fn1 = [1, 2, 3, 4, 5]
+    const fn2 = [6, 7, 8, 9, 10]
+    function name() {
+        console.log(arguments);
+    }
+    name(...fn1)
+    // 扩展运算符可以展开一个数组
+    console.log([...fn1, ...fn2]);
+
+    //将伪数组变成真数组
+    const divs = document.querySelectorAll('div')
+    const divArr = [...divs]
+    console.log(divs + '伪');
+    console.log(divArr + '真');
+</script>

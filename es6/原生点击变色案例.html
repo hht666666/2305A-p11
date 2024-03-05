@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #haha {
+            background-color: #fff;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex;">
+        <div id="haha"></div>
+        <div id="haha"></div>
+        <div id="haha"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    let haha = document.querySelectorAll('#haha')
+    for (var i = 0; i < haha.length; i++) {
+        haha[i].onclick = function () {
+            for (var i = 0; i < haha.length; i++) {
+                haha[i].style.backgroundColor = '#fff';
+            }
+            this.style.backgroundColor = 'red';
+        }
+    }
+</script>

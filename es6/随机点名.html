@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url('https://img.zcool.cn/community/011d7e5d22b575a801213763a8a61a.jpg@1280w_1l_2o_100sh.jpg');
+            background-size: 100vw 100vh;
+        }
+
+        .list {
+            display: flex;
+            width: 500px;
+            height: 280px;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            width: 20%;
+            text-align: center;
+            line-height: 70px;
+            background-image: radial-gradient(#8ecd3e, red);
+            font-size: 20px;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: ani 3s infinite ease-in-out;
+            background-position: 200px 200px;
+            background-clip: 0;
+        }
+
+        @keyframes ani {
+            0% {
+                background-position: 250px 200px;
+            }
+
+            100% {
+                background-position: 450px 400px;
+
+            }
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 300px;
+            color: #fff;
+        }
+
+        .div {
+            display: flex;
+        }
+
+        button {
+            margin-left: 50px;
+            width: 70px;
+            height: 30px;
+            border-radius: 20px;
+            background-color: #8ecd3e;
+            color: #fff;
+        }
+
+        .time {
+            margin-left: 700px;
+            margin-bottom: 100px;
+            color: #fff;
+        }
+
+        .tx {
+            margin-left: 50px;
+            margin-bottom: 50px;
+            color: #fff;
+        }
+
+        span {
+            background-image: radial-gradient(#8ecd3e, red);
+            font-size: 20px;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: aaa 3s infinite ease-in-out;
+            background-position: 200px 200px;
+            background-clip: 0;
+        }
+
+        @keyframes aaa {
+            0% {
+                background-position: 250px 200px;
+            }
+
+            100% {
+                background-position: 450px 400px;
+
+            }
+        }
+
+        .items {
+            color: #fff;
+            width: 20%;
+            text-align: center;
+            line-height: 70px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>点名表格</h1>
+
+    <div class="div">
+        <div class="list">
+        </div>
+
+        <div>
+            <p class="time">时间：<font></font>
+            </p>
+            <p class="tx">天选之人: &emsp; <span></span> </p>
+            <button onclick="people()">单人点名</button>
+            <button onclick="peoples()">双人点名</button>
+            <button onclick="man()">男生点名</button>
+            <button onclick="woman()">女生点名</button>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+<script>
+    var arr = [
+        { name: '孟鹤堂', sex: '男' },
+        { name: '周九良', sex: '男' },
+        { name: '刘亦菲', sex: '女' },
+        { name: '岳云鹏', sex: '男' },
+        { name: '孙越', sex: '男' },
+        { name: '高峰', sex: '男' },
+        { name: '栾云平', sex: '男' },
+        { name: '周慧敏', sex: '女' },
+        { name: '烧饼', sex: '男' },
+        { name: '郭麒麟', sex: '男' },
+        { name: '王祖贤', sex: '女' },
+        { name: '秦霄贤', sex: '男' },
+        { name: '尚筱菊', sex: '男' },
+        { name: '郎鹤炎', sex: '男' },
+        { name: '张鹤伦', sex: '男' },
+        { name: '关之琳', sex: '女' },
+        { name: '郭德纲', sex: '男' },
+        { name: '于谦', sex: '男' },
+        { name: '侯镇', sex: '男' },
+        { name: '刘诗诗', sex: '女' },
+    ]
+
+    //渲染天选之人数据
+    let stringg = ''
+    arr.forEach(item => {
+        stringg += `  <div class="item">
+           ${item.name}
+        </div>`
+    });
+
+    document.querySelector('.list').innerHTML = stringg
+
+    //天选之人
+    let spans = document.querySelector('span')
+    //天选之人背景色
+    let items = document.querySelectorAll('.item')
+    function fn() {
+        items.forEach((item, i) => {
+            item.className = 'item'
+            if (spans.innerHTML.includes(item.innerText)) {
+                item.className = 'items'
+            }
+        })
+    }
+    //单人点名
+    function people() {
+        timer = setInterval(() => {
+            var index = Math.floor(Math.random() * (arr.length))
+            spans.innerHTML = arr[index].name
+            fn()
+        }, 10)
+        setTimeout(() => {
+            clearInterval(timer)
+        }, 1000)
+    }
+
+
+    //双人点名
+    var empty = ''
+    function peoples() {
+        if (empty == '') {
+            empty = '1'
+            timer = setInterval(() => {
+                spans.innerHTML = ''
+                for (let i = 0; i < 2; i++) {
+                    var index = Math.floor(Math.random() * (arr.length))
+                    if (i == 0) {
+                        spans.innerHTML += arr[index].name + '---'
+                    } else {
+                        spans.innerHTML += arr[index].name
+                    }
+                }
+                fn()
+            }, 10)
+        } else {
+            clearInterval(timer)
+            empty = ''
+        }
+    }
+
+
+
+    //男生点名
+    function man() {
+        var timer = setInterval(() => {
+            var manarr = arr.filter((item) => {
+                return item.sex == '男'
+            })
+            var index = Math.floor(Math.random() * (manarr.length))
+            spans.innerHTML = manarr[index].name
+            fn()
+        }, 10)
+        setTimeout(() => {
+            clearInterval(timer)
+        }, 1000)
+    }
+
+
+
+    //女生点名
+    function woman() {
+        var timer = setInterval(() => {
+            var womanarr = arr.filter((item) => {
+                return item.sex == '女'
+            })
+            var index = Math.floor(Math.random() * (womanarr.length))
+            spans.innerHTML = womanarr[index].name
+            fn()
+        }, 10)
+        setTimeout(() => {
+            clearInterval(timer)
+        }, 1000)
+    }
+
+
+    //时间
+    document.querySelector('font').innerHTML = new Date().toLocaleString()
+    setInterval(() => {
+        document.querySelector('font').innerHTML = new Date().toLocaleString()
+    }, 1000)
+</script>
