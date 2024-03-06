@@ -35,9 +35,7 @@
         h1 {
             text-align: center;
             margin-bottom: 300px;
-            -webkit-background-clip: text;
-            background-clip: 0;
-            color: transparent;
+            color: #fff;
         }
 
         .div {
@@ -145,7 +143,6 @@
            ${item.name}
         </div>`
             spans.style.backgroundImage = `radial-gradient(${color}, ${color1})`
-            document.querySelector('h1').style.backgroundImage = `radial-gradient(${color}, ${color1})`
         });
         document.querySelector('.list').innerHTML = stringg
     }
@@ -154,10 +151,10 @@
     // 每隔一秒改变一次颜色
     setInterval(() => {
         name()
-    }, 1000);
+    }, 100);
 
 
-
+    let itemarr = document.querySelectorAll('.item')
     //单人点名
     function people() {
         timer = setInterval(() => {
