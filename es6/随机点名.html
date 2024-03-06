@@ -28,25 +28,16 @@
             -webkit-background-clip: text;
             background-clip: 0;
             color: transparent;
-            animation: aaa 3s infinite ease-in-out;
-            background-position: 200px 200px;
         }
 
-        @keyframes aaa {
-            0% {
-                background-position: 200px 200px;
-            }
-
-            100% {
-                background-position: 400px 400px;
-            }
-        }
 
 
         h1 {
             text-align: center;
             margin-bottom: 300px;
-            color: #fff;
+            -webkit-background-clip: text;
+            background-clip: 0;
+            color: transparent;
         }
 
         .div {
@@ -78,15 +69,13 @@
             -webkit-background-clip: text;
             background-clip: 0;
             color: transparent;
-            animation: aaa 3s infinite ease-in-out;
-            background-position: 200px 200px;
         }
     </style>
 </head>
 
 <body>
 
-    <h1>点名表格</h1>
+    <h1>2305A随机点名表</h1>
 
     <div class="div">
         <div class="list">
@@ -149,13 +138,14 @@
     function name() {
         let stringg = ''
         arr.forEach(item => {
-            var color = '#' + Math.floor(Math.random() * 16777215).toString(16);
-            var color1 = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            var color = "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
+            var color1 = "#" + Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0");
             // console.log(color, color1, item);
             stringg += `<div class="item" style='background-image:radial-gradient(${color}, ${color1})'>
            ${item.name}
         </div>`
             spans.style.backgroundImage = `radial-gradient(${color}, ${color1})`
+            document.querySelector('h1').style.backgroundImage = `radial-gradient(${color}, ${color1})`
         });
         document.querySelector('.list').innerHTML = stringg
     }
