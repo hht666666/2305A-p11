@@ -24,7 +24,6 @@
             width: 16.666667%;
             text-align: center;
             line-height: 70px;
-            background-image: radial-gradient(red, greenyellow);
             font-size: 20px;
             -webkit-background-clip: text;
             background-clip: 0;
@@ -75,23 +74,12 @@
         }
 
         span {
-            background-image: radial-gradient(red, greenyellow);
             font-size: 20px;
             -webkit-background-clip: text;
             background-clip: 0;
             color: transparent;
             animation: aaa 3s infinite ease-in-out;
             background-position: 200px 200px;
-        }
-
-
-
-        .items {
-            color: #fff;
-            width: 16.666667%;
-            text-align: center;
-            line-height: 70px;
-            font-size: 20px;
         }
     </style>
 </head>
@@ -154,34 +142,37 @@
         { name: '王振霆', sex: '男' },
     ]
 
-    //渲染天选之人数据
-    let stringg = ''
-    arr.forEach(item => {
-        stringg += `  <div class="item">
-           ${item.name}
-        </div>`
-    });
-
-    document.querySelector('.list').innerHTML = stringg
-
     //天选之人
     let spans = document.querySelector('span')
-    //天选之人背景色
-    let items = document.querySelectorAll('.item')
-    function fn() {
-        items.forEach((item, i) => {
-            item.className = 'item'
-            if (spans.innerHTML.includes(item.innerText)) {
-                item.className = 'items'
-            }
-        })
+
+    //渲染天选之人数据
+    function name() {
+        let stringg = ''
+        arr.forEach(item => {
+            var color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            var color1 = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            // console.log(color, color1, item);
+            stringg += `<div class="item" style='background-image:radial-gradient(${color}, ${color1})'>
+           ${item.name}
+        </div>`
+            spans.style.backgroundImage = `radial-gradient(${color}, ${color1})`
+        });
+        document.querySelector('.list').innerHTML = stringg
     }
+    name()
+
+    // 每隔一秒改变一次颜色
+    setInterval(() => {
+        name()
+    }, 1000);
+
+
+
     //单人点名
     function people() {
         timer = setInterval(() => {
             var index = Math.floor(Math.random() * (arr.length))
             spans.innerHTML = arr[index].name
-            fn()
         }, 10)
         setTimeout(() => {
             clearInterval(timer)
@@ -205,7 +196,6 @@
                         spans.innerHTML += arr[index].name
                     }
                 }
-                fn()
             }, 10)
         } else {
             clearInterval(timer)
@@ -224,7 +214,7 @@
             })
             var index = Math.floor(Math.random() * (manarr.length))
             spans.innerHTML = manarr[index].name
-            fn()
+
         }, 10)
         setTimeout(() => {
             clearInterval(timer)
@@ -241,7 +231,7 @@
             })
             var index = Math.floor(Math.random() * (womanarr.length))
             spans.innerHTML = womanarr[index].name
-            fn()
+
         }, 10)
         setTimeout(() => {
             clearInterval(timer)
