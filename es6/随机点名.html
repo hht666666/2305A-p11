@@ -178,14 +178,17 @@
             empty = '1'
             timer = setInterval(() => {
                 spans.innerHTML = ''
-                for (let i = 0; i < 2; i++) {
-                    var index = Math.floor(Math.random() * (arr.length))
-                    if (i == 0) {
-                        spans.innerHTML += arr[index].name + '---'
+                var index = Math.floor(Math.random() * (arr.length))
+                var index1 = Math.floor(Math.random() * (arr.length))
+                console.log(index, index1);
+                if (index == index1) {
+                    if (index1 == 0) {
+                        index1++
                     } else {
-                        spans.innerHTML += arr[index].name
+                        index1--
                     }
                 }
+                spans.innerHTML += arr[index].name + '---' + arr[index1].name
             }, 10)
         } else {
             clearInterval(timer)
