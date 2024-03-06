@@ -154,12 +154,16 @@
     }, 100);
 
 
-    let itemarr = document.querySelectorAll('.item')
+    // let itemarr = document.querySelectorAll('.item')
     //单人点名
     function people() {
         timer = setInterval(() => {
             var index = Math.floor(Math.random() * (arr.length))
             spans.innerHTML = arr[index].name
+            // itemarr.forEach(item => {
+            //     item.style.color = ''
+            // })
+            // itemarr[index].style.color = '#fff'
         }, 10)
         setTimeout(() => {
             clearInterval(timer)
