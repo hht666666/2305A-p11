@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<script>
+    //实例化promise对象
+    /**
+     * 概念
+     * promise函数是一个容器，里面存放着异步代码
+     * 
+     * 特点
+     * 1.有三种状态pending 进行中   resolve 成功状态  rejected 失败状态
+     * 2.状态一旦改变，就不会再变
+     * 3.状态变化：pending -> resolve  pending -> rejected
+     * 
+     * promise底层原理是根据什么封装的
+     * 根据js提供的网络请求xmlHttpRequest进行封装
+     * **/
+
+
+    //初始封装
+    // const p = new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         let a = '成功'
+    //         // resolve(a)
+    //         let b = '失败'
+    //         reject(b)
+    //     }, 1000);
+    // })
+    // //完整调用
+    // p.then((res) => {
+    //     console.log(res);
+    // })
+    // p.catch((error) => {
+    //     console.log(error);
+    // })
+    // //简写调用
+    // p.then
+    //     ((res) => {
+    //         console.log(res);
+    //     }),
+    //     (error) => {
+    //         console.log(error);
+    //     }
+
+
+
+    //链式调用
+    /**
+     * 解决了promise的回调地狱问题，一个then处理一个请求接口
+     * 
+     * catch 可以捕获前面then中出现的第一个错误
+     * 如果第一个then报错了，那么catch不会往下执行
+     * 
+     * **/
+    const p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const data = '我最帅'
+            // resolve(data)
+            reject('我是第一个报错信息')
+        }, 1000);
+    })
+    //模拟接口报错
+    function name() {
+        throw new Error('我是第二个报错信息')
+    }
+
+    p.then((res) => {
+        console.log(res, '成功');
+        return '我把这个值return出去,下一个.then就是接受这个值'
+    }).then((value) => {
+        name()
+    }).then((res) => {
+        console.log(res);
+    }).catch((error) => {
+        console.log(error, 'err');
+    })
+
+
+    //底层原理
+    // const p = new Promise((resolve, reject) => {
+    //     //创建对象，创建链接xmlHttpRequest
+    //     const xhr = new XMLHttpRequest()
+    //     //初始化
+    //     xhr.open('GET', 'https://api.apiopen.top/getJoke')
+    //     //发送请求
+    //     xhr.send()
+    //     //绑定事件，处理响应结果
+    //     xhr.onreadystatechange = () => {
+    //         //判断 等于4表示成功
+    //         if (xhr.readyState === 4) {
+    //             //判断响应状态码 200-299表示成功
+    //             if (xhr.status >= 200 && xhr.status < 300) {
+    //                 //表示成功
+    //                 resolve(xhr.response)
+    //             } else {
+    //                 //表示失败
+    //                 reject(xhr.status)
+    //             }
+    //         }
+    //     }
+    // })
+</script>
