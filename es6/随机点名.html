@@ -61,6 +61,7 @@
             border-radius: 20px;
             background-color: #8ecd3e;
             color: #fff;
+            cursor: pointer;
         }
 
         .time {
@@ -94,11 +95,11 @@
         <div>
             <p class="time">时间：<font></font>
             </p>
-            <p class="tx">天选之人: &emsp; <span></span> </p>
-            <button onclick="people()">单人点名</button>
+            <p class="tx">天选之人: &emsp; <span>韩昊天</span> </p>
+            <button onclick="people()" class="people">单人点名</button>
             <button onclick="peoples()" class="peoples">双人点名</button>
-            <button onclick="man()">男生点名</button>
-            <button onclick="woman()">女生点名</button>
+            <button onclick="man()" class="man">男生点名</button>
+            <button onclick="woman()" class="woman">女生点名</button>
         </div>
     </div>
 </body>
@@ -178,28 +179,54 @@
             }
         })
     }
+    //判断开始结束 
+    var flag = true
+    //按钮禁止
+    let btns = document.querySelectorAll('button')
+    function disabledbtn(i) {
+        btns.forEach(item => {
+            item.disabled = true
+            item.style.cursor='no-drop'
+        })
+        btns[i].disabled = false
+        btns[i].style.cursor='pointer'
+    }
+    //解除禁止
+    function removebtn() {
+        btns.forEach(item => {
+            item.disabled = false
+            item.style.cursor='pointer'
+        })
+    }
 
 
 
     //单人点名
     function people() {
-        timer = setInterval(() => {
-            var index = Math.floor(Math.random() * (arr.length))
-            spans.innerHTML = arr[index].name
-            fn()
-        }, 10)
-        setTimeout(() => {
+        if (flag) {
+            flag = false
+            document.querySelector('.people').innerHTML = '停止'
+            timer = setInterval(() => {
+                var index = Math.floor(Math.random() * (arr.length))
+                spans.innerHTML = arr[index].name
+                disabledbtn(0)
+                fn()
+            }, 10)
+        }
+        else {
+            flag = true
+            document.querySelector('.people').innerHTML = '单人点名'
             clearInterval(timer)
-        }, 1000)
+            removebtn()
+        }
     }
 
 
     //双人点名
-    var empty = ''
     function peoples() {
-        document.querySelector('.peoples').innerHTML = '停止'
-        if (empty == '') {
-            empty = '1'
+        if (flag) {
+            flag = false
+            document.querySelector('.peoples').innerHTML = '停止'
             timer = setInterval(() => {
                 spans.innerHTML = ''
                 var index = Math.floor(Math.random() * (arr.length))
@@ -213,11 +240,13 @@
                 }
                 spans.innerHTML += arr[index].name + '---' + arr[index1].name
                 fn()
+                disabledbtn(1)
             }, 10)
         } else {
             clearInterval(timer)
-            empty = ''
+            flag = true
             document.querySelector('.peoples').innerHTML = '双人点名'
+            removebtn()
         }
     }
 
@@ -225,34 +254,50 @@
 
     //男生点名
     function man() {
-        var timer = setInterval(() => {
-            var manarr = arr.filter((item) => {
-                return item.sex == '男'
-            })
-            var index = Math.floor(Math.random() * (manarr.length))
-            spans.innerHTML = manarr[index].name
-            fn()
-        }, 10)
-        setTimeout(() => {
+        if (flag) {
+            flag = false
+            document.querySelector('.man').innerHTML = '停止'
+            timer = setInterval(() => {
+                var manarr = arr.filter((item) => {
+                    return item.sex == '男'
+                })
+                var index = Math.floor(Math.random() * (manarr.length))
+                spans.innerHTML = manarr[index].name
+                fn()
+                disabledbtn(2)
+            }, 10)
+        }
+        else {
             clearInterval(timer)
-        }, 1000)
+            flag = true
+            document.querySelector('.man').innerHTML = '男生点名'
+            removebtn()
+        }
     }
 
 
 
     //女生点名
     function woman() {
-        var timer = setInterval(() => {
-            var womanarr = arr.filter((item) => {
-                return item.sex == '女'
-            })
-            var index = Math.floor(Math.random() * (womanarr.length))
-            spans.innerHTML = womanarr[index].name
-            fn()
-        }, 10)
-        setTimeout(() => {
+        if (flag) {
+            flag = false
+            document.querySelector('.woman').innerHTML = '停止'
+            timer = setInterval(() => {
+                var womanarr = arr.filter((item) => {
+                    return item.sex == '女'
+                })
+                var index = Math.floor(Math.random() * (womanarr.length))
+                spans.innerHTML = womanarr[index].name
+                fn()
+                disabledbtn(3)
+            }, 10)
+        }
+        else {
             clearInterval(timer)
-        }, 1000)
+            flag = true
+            document.querySelector('.woman').innerHTML = '女生点名'
+            removebtn()
+        }
     }
 
 
