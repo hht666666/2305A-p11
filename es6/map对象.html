@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+<script>
+    let map = new Map([
+        ['name', '张三'],
+        ['title', 'Author']
+    ]);
+
+    console.log(map.size);
+    console.log(map.has('name'));
+    console.log(map.get('name'));
+    console.log(map.has('title'));
+    console.log(map.get('title'));
+    // 更改name
+    map.set('name', '李四');
+    console.log(map);
+    // 删除title
+    map.delete('title');
+    console.log(map);
+    // 添加age
+    map.set('age', 40);
+    console.log(map);
+    // 清空map
+    map.clear();
+    console.log(map);
+</script>

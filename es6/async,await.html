@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+<script>
+    // //使用async快速创建一个异步函数
+    // async function timeout() {
+    //     return 'hello'
+    // }
+
+    // async function aaa() {
+    //     let res = await timeout()
+    //     console.log(res)
+    // }
+    // aaa()
+
+
+
+    //trycatch       隐藏报错
+    async function async1() {
+        // return 'hello'
+        throw new Error('出错了')
+    }
+
+    async function async2() {
+        try {
+            let res = await async1()
+            console.log(res);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    async2()
+</script>
