@@ -28,8 +28,20 @@
             -webkit-background-clip: text;
             background-clip: 0;
             color: transparent;
+            animation: ani 1s infinite ease-in-out;
+            background-position: 200px 200px;
         }
 
+        @keyframes ani {
+            0% {
+                background-position: 200px 200px;
+            }
+
+            100% {
+                background-position: 400px 400px;
+
+            }
+        }
 
 
         h1 {
@@ -149,21 +161,32 @@
     name()
 
     // 每隔一秒改变一次颜色
-    setInterval(() => {
-        name()
-    }, 100);
+    // setInterval(() => {
+    //     name()
+    // }, 100);
 
 
-    // let itemarr = document.querySelectorAll('.item')
+
+    //选中高亮 
+    let itemarr = document.querySelectorAll('.item')
+    function fn() {
+        itemarr.forEach(item => {
+            if (spans.innerText.includes(item.innerText)) {
+                item.style.color = '#fff'
+            } else {
+                item.style.color = ''
+            }
+        })
+    }
+
+
+
     //单人点名
     function people() {
         timer = setInterval(() => {
             var index = Math.floor(Math.random() * (arr.length))
             spans.innerHTML = arr[index].name
-            // itemarr.forEach(item => {
-            //     item.style.color = ''
-            // })
-            // itemarr[index].style.color = '#fff'
+            fn()
         }, 10)
         setTimeout(() => {
             clearInterval(timer)
@@ -181,7 +204,6 @@
                 spans.innerHTML = ''
                 var index = Math.floor(Math.random() * (arr.length))
                 var index1 = Math.floor(Math.random() * (arr.length))
-                console.log(index, index1);
                 if (index == index1) {
                     if (index1 == 0) {
                         index1++
@@ -190,6 +212,7 @@
                     }
                 }
                 spans.innerHTML += arr[index].name + '---' + arr[index1].name
+                fn()
             }, 10)
         } else {
             clearInterval(timer)
@@ -208,7 +231,7 @@
             })
             var index = Math.floor(Math.random() * (manarr.length))
             spans.innerHTML = manarr[index].name
-
+            fn()
         }, 10)
         setTimeout(() => {
             clearInterval(timer)
@@ -225,7 +248,7 @@
             })
             var index = Math.floor(Math.random() * (womanarr.length))
             spans.innerHTML = womanarr[index].name
-
+            fn()
         }, 10)
         setTimeout(() => {
             clearInterval(timer)
