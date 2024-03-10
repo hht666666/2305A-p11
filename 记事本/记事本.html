@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记事本</title>
+    <link rel="stylesheet" href="./记事本.css">
+</head>
+
+<body>
+    <!-- 
+    写题思路
+    分为四个模块来写
+    1.图片和标题用text-align:center;实现局中显示
+    2.input框和添加按钮
+    3.内容区域  点击添加按钮将dom元素添加到页面渲染
+    4.功能模块 使用弹性盒子让底部均匀分布
+ -->
+    <div class="container">
+        <div class="title">
+            <img src="./Snipaste_2024-03-08_19-03-47.png" alt="" srcset="">
+            <h3>~今天我需要做的事情~</h3>
+        </div>
+
+        <div class="add">
+            <input type="text" placeholder="请输入未完成的list">
+            <button onclick="add()">添加</button>
+        </div>
+
+        <ul class="content">
+
+        </ul>
+
+
+        <div class="ability">
+            <button><span class="num">无</span>事项</button>
+            <button onclick="whole()">查看所有</button>
+            <button onclick="Ongoing()">待完成</button>
+            <button onclick="Completed()">已完成</button>
+            <button onclick="clears()">清空所有</button>
+        </div>
+    </div>
+
+</body>
+<script src="./记事本.js"></script>
+
+</html>
